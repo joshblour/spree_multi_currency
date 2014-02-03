@@ -5,7 +5,7 @@
     <% price = variant.price_in(currency.iso_code) %>
     <%= text_field_tag("vp[#{variant.id}][#{currency.iso_code}][price]", (price ? price.display_amount.money : '') ) %>
     <%= currency.iso_code %>
-    <% unless currency == Spree::Config[:currency] %>
+    <% unless price.base_price? %>
       (
         <%= check_box_tag("vp[#{variant.id}][#{currency.iso_code}][auto_update]", 1, price.prefers_auto_update?, class: 'set-currency-price-manually')  %>
         <%= content_tag :span, 'set automatically?', id: 'hint'%>

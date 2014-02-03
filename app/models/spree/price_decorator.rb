@@ -4,12 +4,12 @@ Spree::Price.class_eval do
   # Need both callback in case secondary currencies get saved before the base or visa versa
   before_save :set_price_from_base_currency, if: :prefers_auto_update?
   after_save :update_other_currencies, if: :base_price?
-  
-  private
-  
+
   def base_price?
     self == variant.default_price
-  end
+  end  
+  
+  private
   
   def update_other_currencies
     self.preferred_auto_update = false
