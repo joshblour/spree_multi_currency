@@ -1,6 +1,9 @@
 module SpreeMultiCurrency
   class Engine < Rails::Engine
     require 'spree/core'
+    require 'money'
+    require 'money/bank/google_currency'
+    
     isolate_namespace Spree
     engine_name 'spree_multi_currency'
 

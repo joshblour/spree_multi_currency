@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_frontend', spree_version
   s.add_dependency 'spree_backend', spree_version
+  s.add_dependency 'money' , ' ~> 6.0.0'
+  s.add_dependency 'google_currency'
 
   s.add_development_dependency 'capybara', '1.0.1'
   s.add_development_dependency 'factory_girl', '~> 2.6.4'

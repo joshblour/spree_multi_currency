@@ -1,8 +1,8 @@
 $ ->
-  $('#currency-select select').change ->
+  $("#currency-select select").change ->
     $.ajax(
-      type: 'POST'
-      url: $(this).data('href')
+      type: "POST"
+      url: $(this).data("href")
       data:
         currency: $(this).val()
     ).done ->
