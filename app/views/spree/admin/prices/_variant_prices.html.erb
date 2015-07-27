@@ -1,10 +1,16 @@
 <h5><%= variant.sku %> (<%= variant.is_master? ? t(:master) : variant.options_text %>)</h5>
-<div class="omega two columns">
+<ul>
 <% supported_currencies.each do |currency| %>
-  <% price = variant.price_in(currency.iso_code) %>
-  <div class="field">
-    <%= label_tag "vp[#{variant.id}][#{currency.iso_code}]", currency.iso_code %>
-    <%= text_field_tag("vp[#{variant.id}][#{currency.iso_code}]", (price ? price.display_amount.money : '')) %>
-  </div>
+  <li>
+    <% price = variant.price_in(currency.iso_code) %>
+    <%= text_field_tag("vp[#{variant.id}][#{currency.iso_code}][price]", (price ? price.display_amount.money : '') ) %>
+    <%= currency.iso_code %>
+    <% unless price.base_price? %>
+      (
+        <%= check_box_tag("vp[#{variant.id}][#{currency.iso_code}][auto_update]", 1, price.prefers_auto_update?, class: 'set-currency-price-manually')  %>
+        <%= content_tag :span, 'set automatically?', id: 'hint'%>
+      )
+    <% end %>
+  </li>
 <% end %>
-</div>
+</ul>
